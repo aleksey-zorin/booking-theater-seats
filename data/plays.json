@@ -1,0 +1,21 @@
+[
+  {
+    "play_id": 1,
+    "title": "Вишнёвый сад",
+    "genre": "Драма",
+    "duration_min": 150,
+    "shows": [
+      {"show_id": 101, "datetime": "20.09.2026 19:00", "hall": "Основной зал", "rows": 10, "seats_per_row": 12},
+      {"show_id": 102, "datetime": "25.09.2026 19:00", "hall": "Основной зал", "rows": 10, "seats_per_row": 12}
+    ]
+  },
+  {
+    "play_id": 2,
+    "title": "Чайка",
+    "genre": "Драма",
+    "duration_min": 140,
+    "shows": [
+      {"show_id": 201, "datetime": "22.09.2026 18:30", "hall": "Малый зал", "rows": 6, "seats_per_row": 8}
+    ]
+  }
+]

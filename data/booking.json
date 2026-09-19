@@ -1,0 +1,10 @@
+[
+  {
+    "booking_id": 1,
+    "show_id": 101,
+    "row": 5,
+    "seat": 12,
+    "viewer_name": "Иванов Иван",
+    "viewer_phone": "+7-900-123-45-67"
+  }
+]

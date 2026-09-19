@@ -1,0 +1,10 @@
+[
+  {
+    "booking_id": 1,
+    "show_id": 101,
+    "row": 5,
+    "seat": 12,
+    "viewer_name": "Ильясов",
+    "viewer_phone": "+7 999 111 22 33"
+  }
+]
