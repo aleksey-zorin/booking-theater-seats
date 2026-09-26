@@ -1,0 +1,26 @@
+[
+  {
+    "id": 101,
+    "play_id": 1,
+    "datetime": "20.09.2026 19:00",
+    "hall": "Основной зал",
+    "rows": 10,
+    "seats_per_row": 12
+  },
+  {
+    "id": 102,
+    "play_id": 1,
+    "datetime": "25.09.2026 19:00",
+    "hall": "Основной зал",
+    "rows": 10,
+    "seats_per_row": 12
+  },
+  {
+    "id": 201,
+    "play_id": 2,
+    "datetime": "22.09.2026 18:30",
+    "hall": "Малый зал",
+    "rows": 6,
+    "seats_per_row": 8
+  }
+]
