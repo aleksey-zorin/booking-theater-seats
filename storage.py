@@ -30,39 +30,60 @@ def _write_json(filename: str, data: list) -> None:
 
 # --- Спектакли ---
 
+
 def load_plays(filename: str) -> list[Play]:
     """Загрузить спектакли из JSON."""
-    return [Play(d["id"], d["title"], d["genre"], d["duration_min"])
-            for d in _read_json(filename)]
+    return [
+        Play(d["id"], d["title"], d["genre"], d["duration_min"])
+        for d in _read_json(filename)
+    ]
 
 
 def save_plays(filename: str, plays: list[Play]) -> None:
     """Сохранить спектакли в JSON."""
-    data = [{"id": p.id, "title": p.title,
-             "genre": p.genre, "duration_min": p.duration_min}
-            for p in plays]
+    data = [
+        {"id": p.id, "title": p.title, "genre": p.genre, "duration_min": p.duration_min}
+        for p in plays
+    ]
     _write_json(filename, data)
 
 
 # --- Показы ---
 
+
 def load_shows(filename: str) -> list[Show]:
     """Загрузить показы из JSON."""
-    return [Show(d["id"], d["play_id"], d["datetime"], d["hall"],
-                 d["rows"], d["seats_per_row"])
-            for d in _read_json(filename)]
+    return [
+        Show(
+            d["id"],
+            d["play_id"],
+            d["datetime"],
+            d["hall"],
+            d["rows"],
+            d["seats_per_row"],
+        )
+        for d in _read_json(filename)
+    ]
 
 
 def save_shows(filename: str, shows: list[Show]) -> None:
     """Сохранить показы в JSON."""
-    data = [{"id": s.id, "play_id": s.play_id, "datetime": s.datetime,
-             "hall": s.hall, "rows": s.rows,
-             "seats_per_row": s.seats_per_row}
-            for s in shows]
+    data = [
+        {
+            "id": s.id,
+            "play_id": s.play_id,
+            "datetime": s.datetime,
+            "hall": s.hall,
+            "rows": s.rows,
+            "seats_per_row": s.seats_per_row,
+        }
+        for s in shows
+    ]
     _write_json(filename, data)
 
 
 # --- Зрители ---
+
 
 def load_users(filename: str) -> list[User]:
     """Загрузить зрителей из JSON."""
@@ -76,8 +97,8 @@ def save_users(filename: str, users: list[User]) -> None:
 
 # --- Бронирования ---
 
-def load_bookings(filename: str, users: list[User],
-                  shows: list[Show]) -> list[Booking]:
+
+def load_bookings(filename: str, users: list[User], shows: list[Show]) -> list[Booking]:
     """JSON → объекты Booking со ссылками на User и Show."""
     bookings: list[Booking] = []
     for d in _read_json(filename):
@@ -94,12 +115,15 @@ def load_bookings(filename: str, users: list[User],
 
 def save_bookings(filename: str, bookings: list[Booking]) -> None:
     """Объекты Booking → JSON с идентификаторами."""
-    data = [{
-        "id": b.id,
-        "user_id": b.user.id,
-        "show_id": b.show.id,
-        "row": b.seat.row,
-        "seat": b.seat.number,
-        "is_cancelled": b.is_cancelled,
-    } for b in bookings]
+    data = [
+        {
+            "id": b.id,
+            "user_id": b.user.id,
+            "show_id": b.show.id,
+            "row": b.seat.row,
+            "seat": b.seat.number,
+            "is_cancelled": b.is_cancelled,
+        }
+        for b in bookings
+    ]
     _write_json(filename, data)

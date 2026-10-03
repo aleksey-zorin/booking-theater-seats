@@ -11,8 +11,7 @@ from models.bookings import (
 
 def _make_env():
     play = Play(1, "Вишнёвый сад", "Драма", 150)
-    show = Show(101, play.id, "20.09.2026 19:00",
-                "Основной зал", 10, 12)
+    show = Show(101, play.id, "20.09.2026 19:00", "Основной зал", 10, 12)
     user1 = User(1, "Иванов", "+7-900")
     user2 = User(2, "Петрова", "+7-901")
     return show, user1, user2

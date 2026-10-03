@@ -26,8 +26,7 @@ def test_show_creation():
 
 
 def test_find_play():
-    plays = [Play(1, "Вишнёвый сад", "Драма", 150),
-             Play(2, "Чайка", "Драма", 140)]
+    plays = [Play(1, "Вишнёвый сад", "Драма", 150), Play(2, "Чайка", "Драма", 140)]
     assert find_play(plays, 2).title == "Чайка"
     assert find_play(plays, 99) is None
 
@@ -39,16 +38,17 @@ def test_find_show():
 
 
 def test_filter_by_genre():
-    plays = [Play(1, "Вишнёвый сад", "Драма", 150),
-             Play(2, "Смешные люди", "Комедия", 100)]
+    plays = [
+        Play(1, "Вишнёвый сад", "Драма", 150),
+        Play(2, "Смешные люди", "Комедия", 100),
+    ]
     result = filter_plays_by_genre(plays, "драма")
     assert len(result) == 1
     assert result[0].title == "Вишнёвый сад"
 
 
 def test_sort_by_duration():
-    plays = [Play(1, "Длинный", "Драма", 200),
-             Play(2, "Короткий", "Комедия", 60)]
+    plays = [Play(1, "Длинный", "Драма", 200), Play(2, "Короткий", "Комедия", 60)]
     result = sort_plays_by_duration(plays)
     assert result[0].title == "Короткий"
     assert result[1].title == "Длинный"

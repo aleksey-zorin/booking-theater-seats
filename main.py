@@ -22,10 +22,14 @@ from models.bookings import (
     show_bookings,
 )
 from storage import (
-    load_plays, save_plays,
-    load_shows, save_shows,
-    load_users, save_users,
-    load_bookings, save_bookings,
+    load_plays,
+    save_plays,
+    load_shows,
+    save_shows,
+    load_users,
+    save_users,
+    load_bookings,
+    save_bookings,
 )
 from utils import input_int, input_non_empty
 
@@ -36,6 +40,7 @@ BOOKINGS_FILE = "data/bookings.json"
 
 
 # --- Работа с показами в меню ---
+
 
 def show_all_plays(plays: list[Play], shows: list[Show]) -> None:
     """Вывести все спектакли с их показами."""
@@ -56,6 +61,7 @@ def show_shows(shows: list[Show]) -> None:
 
 
 # --- Добавление и поиск зрителей ---
+
 
 def create_new_user(users: list[User]) -> None:
     """Запросить данные и добавить зрителя."""
@@ -80,8 +86,10 @@ def search_user(users: list[User]) -> None:
 
 # --- Бронирование ---
 
-def create_new_booking(bookings: list[Booking], shows: list[Show],
-                       users: list[User]) -> None:
+
+def create_new_booking(
+    bookings: list[Booking], shows: list[Show], users: list[User]
+) -> None:
     """Сценарий создания брони с участием объектов User, Show, Seat."""
     if not shows:
         print("Нет доступных показов.")
@@ -132,8 +140,7 @@ def cancel_existing_booking(bookings: list[Booking]) -> None:
         print("Бронь не найдена.")
 
 
-def search_bookings_by_user(bookings: list[Booking],
-                            users: list[User]) -> None:
+def search_bookings_by_user(bookings: list[Booking], users: list[User]) -> None:
     """Показать брони конкретного зрителя."""
     if not users:
         print("Зрителей нет.")
@@ -198,6 +205,7 @@ def sort_plays_menu(plays: list[Play], shows: list[Show]) -> None:
 
 
 # --- Меню ---
+
 
 def menu() -> None:
     print("\n=== Система бронирования мест в театре ===")

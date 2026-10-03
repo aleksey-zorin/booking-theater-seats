@@ -4,23 +4,28 @@
 class Play:
     """Спектакль."""
 
-    def __init__(self, play_id: int, title: str,
-                 genre: str, duration_min: int) -> None:
+    def __init__(self, play_id: int, title: str, genre: str, duration_min: int) -> None:
         self.id = play_id
         self.title = title
         self.genre = genre
         self.duration_min = duration_min
 
     def __str__(self) -> str:
-        return (f"[{self.id}] {self.title} "
-                f"({self.genre}, {self.duration_min} мин.)")
+        return f"[{self.id}] {self.title} " f"({self.genre}, {self.duration_min} мин.)"
 
 
 class Show:
     """Показ спектакля в зале."""
 
-    def __init__(self, show_id: int, play_id: int, datetime_str: str,
-                 hall: str, rows: int, seats_per_row: int) -> None:
+    def __init__(
+        self,
+        show_id: int,
+        play_id: int,
+        datetime_str: str,
+        hall: str,
+        rows: int,
+        seats_per_row: int,
+    ) -> None:
         self.id = show_id
         self.play_id = play_id
         self.datetime = datetime_str
@@ -29,8 +34,10 @@ class Show:
         self.seats_per_row = seats_per_row
 
     def __str__(self) -> str:
-        return (f"Показ {self.id}: {self.datetime}, "
-                f"{self.hall} ({self.rows}x{self.seats_per_row})")
+        return (
+            f"Показ {self.id}: {self.datetime}, "
+            f"{self.hall} ({self.rows}x{self.seats_per_row})"
+        )
 
 
 def find_play(plays: list[Play], play_id: int) -> Play | None:
