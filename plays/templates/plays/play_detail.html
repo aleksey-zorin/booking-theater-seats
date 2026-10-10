@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {% if play %}{{ play.title }} — Театр{% else %}Спектакль не найден{% endif %}
+{% endblock %}
+
+{% block content %}
+{% if play %}
+    <div class="card">
+        <div class="card-body">
+            <h1 class="card-title">{{ play.title }}</h1>
+            <p class="card-text">
+                <strong>Жанр:</strong> {{ play.genre }}<br>
+                <strong>Продолжительность:</strong> {{ play.duration_min }} мин.
+            </p>
+            <h3>Показы</h3>
+            {% if shows %}
+                <ul class="list-group">
+                    {% for show in shows %}
+                        <li class="list-group-item">
+                            <strong>{{ show.datetime }}</strong> —
+                            {{ show.hall }}, {{ show.rows }}×{{ show.seats_per_row }} мест
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>Показов пока нет.</p>
+            {% endif %}
+        </div>
+    </div>
+{% else %}
+    <h1 class="text-danger">Спектакль не найден</h1>
+    <p>Спектакль с указанным идентификатором отсутствует.</p>
+{% endif %}
+<a href="{% url 'plays:list' %}" class="btn btn-outline-secondary mt-3">
+    ← к списку спектаклей
+</a>
+{% endblock %}

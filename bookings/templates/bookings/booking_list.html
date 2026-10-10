@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Бронирования — Театр{% endblock %}
+
+{% block content %}
+<h1>Бронирования</h1>
+
+{% for booking in bookings %}
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+        <a href="{% url 'bookings:detail' booking.id %}">
+            {{ booking.show.datetime }} — место {{ booking.seat }}
+        </a>
+        {% include "bookings/includes/booking_status.html" %}
+    </li>
+{% empty %}
+    <p>Бронирований нет.</p>
+{% endfor %}
+{% endblock %}

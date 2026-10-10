@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Спектакли — Театр{% endblock %}
+
+{% block content %}
+<h1>Спектакли</h1>
+<p>Всего спектаклей: {{ plays|length }}</p>
+
+{% for play in plays %}
+    {% include "plays/includes/play_card.html" %}
+{% empty %}
+    <p>Спектаклей нет.</p>
+{% endfor %}
+{% endblock %}

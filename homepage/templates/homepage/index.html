@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}Главная — Театр{% endblock %}
+
+{% block content %}
+<h1 class="display-4">Система бронирования мест в театре</h1>
+<p class="lead">Просмотр спектаклей, показов и бронирований.</p>
+<p>Основные разделы:</p>
+<a href="{% url 'plays:list' %}" class="btn btn-primary me-2">Спектакли</a>
+<a href="{% url 'bookings:list' %}" class="btn btn-secondary">Бронирования</a>
+{% endblock %}

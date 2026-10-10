@@ -1,0 +1,12 @@
+<article class="card play-card mb-3">
+    <div class="card-body">
+        <h2 class="card-title">{{ play.title|default:"Без названия" }}</h2>
+        <p class="card-text">
+            Жанр: {{ play.genre }}<br>
+            Продолжительность: {{ play.duration_min }} мин.
+        </p>
+        <a href="{% url 'plays:detail' play.id %}" class="btn btn-primary">
+            Подробнее
+        </a>
+    </div>
+</article>

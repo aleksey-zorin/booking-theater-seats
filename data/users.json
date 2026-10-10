@@ -1,8 +1,10 @@
 [
-  {
-    "id": 1,
-    "name": "Дамир",
-    "phone": "+7 952 952 52 52",
-    "email": "damirka228@mail.ru"
-  }
+  {"id": 1, "name": "Дамир Ильясов", "phone": "+7-952-952-52-652",
+   "email": "damirka228@mail.ru"},
+  {"id": 2, "name": "Дольган Манжиков", "phone": "+7-967-677-67-67",
+   "email": "dolgan@example.com"},
+  {"id": 3, "name": "Сысоев Виталий", "phone": "+7-999-999-99-99",
+   "email": "vitek@example.com"},
+  {"id": 4, "name": "Арсений Верхов", "phone": "+7-900-444-33-22",
+   "email": "ars@example.com"}
 ]

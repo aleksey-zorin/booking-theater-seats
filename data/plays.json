@@ -10,5 +10,29 @@
     "title": "Чайка",
     "genre": "Драма",
     "duration_min": 140
+  },
+  {
+    "id": 3,
+    "title": "Гамлет",
+    "genre": "Трагедия",
+    "duration_min": 180
+  },
+  {
+    "id": 4,
+    "title": "Ромео и Джульетта",
+    "genre": "Трагедия",
+    "duration_min": 165
+  },
+  {
+    "id": 5,
+    "title": "Ревизор",
+    "genre": "Комедия",
+    "duration_min": 130
+  },
+  {
+    "id": 6,
+    "title": "Мастер и Маргарита",
+    "genre": "Драма",
+    "duration_min": 200
   }
 ]
