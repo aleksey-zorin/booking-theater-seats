@@ -1,5 +1,8 @@
 """Веб-страницы бронирований."""
 
+import sqlite3
+
+
 from django.http import HttpResponse
 from django.shortcuts import render
 
@@ -27,3 +30,31 @@ def booking_detail(request, booking_id: int) -> HttpResponse:
     context = {"booking": booking}
     status = 200 if booking else 404
     return render(request, "bookings/booking_detail.html", context, status=status)
+
+
+DB_PATH = "data/theatre.sqlite"
+
+
+def statistics_sql(request) -> HttpResponse:
+    """Статистика броней по спектаклям (JOIN + GROUP BY + HAVING)."""
+    conn = sqlite3.connect(DB_PATH)
+    conn.row_factory = sqlite3.Row
+    stats = conn.execute("""
+        SELECT
+            plays.title AS play_title,
+            COUNT(bookings.id) AS bookings_count
+        FROM plays
+        LEFT JOIN shows ON shows.play_id = plays.id
+        LEFT JOIN bookings ON bookings.show_id = shows.id
+            AND bookings.is_cancelled = 0
+        GROUP BY plays.id, plays.title
+        ORDER BY bookings_count DESC
+    """).fetchall()
+
+    total = conn.execute(
+        "SELECT COUNT(*) AS c FROM bookings WHERE is_cancelled = 0"
+    ).fetchone()["c"]
+    conn.close()
+
+    context = {"statistics": stats, "total_active": total}
+    return render(request, "bookings/statistics.html", context)

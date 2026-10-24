@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Занятые места — Театр{% endblock %}
+
+{% block content %}
+<h1>Занятые места на показе</h1>
+
+<form method="get" class="mb-3">
+    <label for="show_id">ID показа:</label>
+    <input type="number" id="show_id" name="show_id"
+           value="{{ show_id|default:'' }}" class="form-control d-inline w-auto">
+    <button type="submit" class="btn btn-primary">Показать</button>
+</form>
+
+{% if show_id %}
+    <h2>Показ {{ show_id }}</h2>
+    {% if seats %}
+        <ul class="list-group">
+        {% for s in seats %}
+            <li class="list-group-item">
+                Ряд {{ s.row }}, место {{ s.seat }}
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p class="text-muted">Все места свободны (или броней нет).</p>
+    {% endif %}
+{% endif %}
+{% endblock %}

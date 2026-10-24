@@ -8,4 +8,5 @@ app_name = "bookings"
 urlpatterns = [
     path("", views.bookings_list, name="list"),
     path("<int:booking_id>/", views.booking_detail, name="detail"),
+    path("statistics/", views.statistics_sql, name="statistics"),
 ]

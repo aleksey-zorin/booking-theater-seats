@@ -1,18 +1,14 @@
 [
-  {
-    "id": 1, "user_id": 1, "show_id": 101,
-    "row": 5, "seat": 12, "is_cancelled": false
-  },
-  {
-    "id": 2, "user_id": 2, "show_id": 301,
-    "row": 3, "seat": 7, "is_cancelled": false
-  },
-  {
-    "id": 3, "user_id": 3, "show_id": 202,
-    "row": 2, "seat": 5, "is_cancelled": true
-  },
-  {
-    "id": 4, "user_id": 4, "show_id": 501,
-    "row": 4, "seat": 2, "is_cancelled": false
-  }
+  {"id": 1, "user_id": 1, "show_id": 101, "row": 5, "seat": 12, "is_cancelled": false},
+  {"id": 2, "user_id": 2, "show_id": 301, "row": 3, "seat": 7, "is_cancelled": false},
+  {"id": 3, "user_id": 3, "show_id": 202, "row": 2, "seat": 5, "is_cancelled": true},
+  {"id": 4, "user_id": 4, "show_id": 501, "row": 4, "seat": 2, "is_cancelled": false},
+  {"id": 5, "user_id": 5, "show_id": 102, "row": 1, "seat": 3, "is_cancelled": false},
+  {"id": 6, "user_id": 6, "show_id": 101, "row": 5, "seat": 13, "is_cancelled": false},
+  {"id": 7, "user_id": 7, "show_id": 302, "row": 2, "seat": 1, "is_cancelled": false},
+  {"id": 8, "user_id": 8, "show_id": 401, "row": 6, "seat": 8, "is_cancelled": true},
+  {"id": 9, "user_id": 1, "show_id": 201, "row": 1, "seat": 1, "is_cancelled": false},
+  {"id": 10, "user_id": 2, "show_id": 102, "row": 4, "seat": 9, "is_cancelled": false},
+  {"id": 11, "user_id": 3, "show_id": 601, "row": 7, "seat": 5, "is_cancelled": false},
+  {"id": 12, "user_id": 4, "show_id": 301, "row": 3, "seat": 8, "is_cancelled": false}
 ]

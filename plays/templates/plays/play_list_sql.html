@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Спектакли (SQL) — Театр{% endblock %}
+
+{% block content %}
+<h1>Спектакли <small class="text-muted">(из SQLite)</small></h1>
+<p>Всего спектаклей: {{ plays|length }}</p>
+
+<ul class="list-group">
+{% for play in plays %}
+    <li class="list-group-item">
+        <strong>{{ play.title }}</strong> — {{ play.genre }},
+        {{ play.duration_min }} мин.
+    </li>
+{% empty %}
+    <li class="list-group-item">Спектаклей нет.</li>
+{% endfor %}
+</ul>
+{% endblock %}

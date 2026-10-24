@@ -6,5 +6,13 @@
   {"id": 3, "name": "Сысоев Виталий", "phone": "+7-999-999-99-99",
    "email": "vitek@example.com"},
   {"id": 4, "name": "Арсений Верхов", "phone": "+7-900-444-33-22",
-   "email": "ars@example.com"}
+   "email": "ars@example.com"},
+  {"id": 5, "name": "Артем Федорок", "phone": "+7-111-111-11-11",
+   "email": "fed@example.com"},
+  {"id": 6, "name": "Свешников Максим", "phone": "+7-987-654-32-11",
+   "email": "maxs@example.com"},
+  {"id": 7, "name": "Чекмаев Михаил", "phone": "+7-123-456-78-90",
+   "email": "meshok@example.com"},
+  {"id": 8, "name": "Демидов Иван", "phone": "+7-666-555-11-88",
+   "email": "ivan@example.com"}
 ]

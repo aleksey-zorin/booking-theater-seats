@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Статистика — Театр{% endblock %}
+
+{% block content %}
+<h1>Статистика бронирований</h1>
+<p>Всего активных броней: <strong>{{ total_active }}</strong></p>
+
+<ul class="list-group">
+{% for item in statistics %}
+    <li class="list-group-item d-flex justify-content-between">
+        <span>{{ item.play_title }}</span>
+        <span class="badge bg-primary">{{ item.bookings_count }}</span>
+    </li>
+{% empty %}
+    <li class="list-group-item">Статистики нет.</li>
+{% endfor %}
+</ul>
+{% endblock %}
