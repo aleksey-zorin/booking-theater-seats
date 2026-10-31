@@ -4,11 +4,18 @@
 
 {% block content %}
 <h1>Спектакли</h1>
-<p>Всего спектаклей: {{ plays|length }}</p>
+<p>Всего: {{ plays|length }}</p>
 
+<ul class="list-group">
 {% for play in plays %}
-    {% include "plays/includes/play_card.html" %}
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+        <a href="{% url 'plays:detail' play.id %}">
+            {{ play.title }} — {{ play.genre }}
+        </a>
+        <span class="badge bg-secondary">{{ play.duration_min }} мин.</span>
+    </li>
 {% empty %}
-    <p>Спектаклей нет.</p>
+    <li class="list-group-item">Спектаклей нет.</li>
 {% endfor %}
+</ul>
 {% endblock %}

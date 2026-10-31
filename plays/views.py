@@ -1,63 +1,58 @@
-"""Веб-страницы спектаклей и показов."""
-import sqlite3
+"""Веб-страницы спектаклей и показов (ORM)."""
+
+from django.shortcuts import get_object_or_404, render
+
+from bookings.models import Booking
+from plays.models import Play, Show
 
 
-from django.http import HttpResponse
-from django.shortcuts import render
-
-from storage import load_plays, load_shows
-
-
-def plays_list(request) -> HttpResponse:
-    """Страница /plays/ — список спектаклей."""
-    plays = load_plays("data/plays.json")
-    context = {"plays": plays}
-    return render(request, "plays/play_list.html", context)
+def plays_list(request):
+    """Страница /plays/ — список спектаклей через ORM."""
+    plays = Play.objects.order_by("title")
+    return render(request, "plays/play_list.html", {"plays": plays})
 
 
-def play_detail(request, play_id: int) -> HttpResponse:
+def play_detail(request, play_id: int):
     """Страница /plays/<play_id>/ — карточка спектакля с показами."""
-    plays = load_plays("data/plays.json")
-    shows = load_shows("data/shows.json")
-
-    play = next((p for p in plays if p.id == play_id), None)
-    play_shows = [s for s in shows if play and s.play_id == play.id]
-
-    context = {
-        "play": play,
-        "shows": play_shows,
-    }
-    status = 200 if play else 404
-    return render(request, "plays/play_detail.html", context, status=status)
+    play = get_object_or_404(Play, pk=play_id)
+    shows = play.shows.order_by("datetime")
+    return render(
+        request,
+        "plays/play_detail.html",
+        {"play": play, "shows": shows},
+    )
 
 
-DB_PATH = "data/theatre.sqlite"
-
-
-def plays_list_sql(request) -> HttpResponse:
-    """Список спектаклей из SQLite."""
-    conn = sqlite3.connect(DB_PATH)
-    conn.row_factory = sqlite3.Row
-    plays = conn.execute(
-        "SELECT id, title, genre, duration_min FROM plays ORDER BY title"
-    ).fetchall()
-    conn.close()
-    context = {"plays": plays}
-    return render(request, "plays/play_list_sql.html", context)
-
-
-def free_seats_sql(request) -> HttpResponse:
-    """Показать свободные места на показе (WHERE + параметризованный запрос)."""
+def free_seats_sql(request):
+    """Страница /plays/free-seats/ — занятые места на показе."""
     show_id = request.GET.get("show_id")
-    seats = []
+    seats = Booking.objects.none()
+    error = None
+    show = None
+
     if show_id:
-        conn = sqlite3.connect(DB_PATH)
-        conn.row_factory = sqlite3.Row
-        seats = conn.execute(
-            "SELECT row, seat FROM bookings "
-            "WHERE show_id = ? AND is_cancelled = 0",
-            [show_id],
-        ).fetchall()
-        conn.close()
-    context = {"show_id": show_id, "seats": seats}
-    return render(request, "plays/free_seats.html", context)
+        try:
+            show_pk = int(show_id)
+        except ValueError:
+            error = "Некорректный идентификатор показа."
+        else:
+            show = Show.objects.filter(pk=show_pk).first()
+            if show is None:
+                error = "Показ не найден."
+            else:
+                seats = (
+                    Booking.objects
+                    .filter(show=show, is_cancelled=False)
+                    .order_by("row", "seat")
+                )
+
+    return render(
+        request,
+        "plays/free_seats.html",
+        {
+            "show_id": show_id,
+            "seats": seats,
+            "error": error,
+            "show": show,
+        },
+    )

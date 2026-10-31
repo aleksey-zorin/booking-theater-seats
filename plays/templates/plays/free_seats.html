@@ -12,18 +12,22 @@
     <button type="submit" class="btn btn-primary">Показать</button>
 </form>
 
-{% if show_id %}
-    <h2>Показ {{ show_id }}</h2>
+{% if error %}
+    <p class="text-danger">{{ error }}</p>
+{% elif show %}
+    <h2>Показ {{ show.id }} — {{ show.datetime }}, {{ show.hall }}</h2>
+    <p>Занятых активных мест: <strong>{{ seats|length }}</strong></p>
+
     {% if seats %}
         <ul class="list-group">
-        {% for s in seats %}
-            <li class="list-group-item">
-                Ряд {{ s.row }}, место {{ s.seat }}
-            </li>
-        {% endfor %}
+            {% for seat in seats %}
+                <li class="list-group-item">
+                    Ряд {{ seat.row }}, место {{ seat.seat }}
+                </li>
+            {% endfor %}
         </ul>
     {% else %}
-        <p class="text-muted">Все места свободны (или броней нет).</p>
+        <p>Все места свободны.</p>
     {% endif %}
 {% endif %}
 {% endblock %}

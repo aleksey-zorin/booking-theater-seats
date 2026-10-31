@@ -1,19 +1,40 @@
-{% extends "base.html" %}
+def free_seats_sql(request):
+    """Страница /plays/free-seats/ — занятые места на показе."""
+    show_id = request.GET.get("show_id")
+    seats = Booking.objects.none()
+    error = None
+    show = None
 
-{% block title %}Спектакли (SQL) — Театр{% endblock %}
+    if show_id:
+        try:
+            show_pk = int(show_id)
+        except ValueError:
+            error = "Некорректный идентификатор показа."
+        else:
+            show = Show.objects.filter(pk=show_pk).first()
+            if show is None:
+                error = "Показ не найден."
+            else:
+                seats = (
+                    Booking.objects
+                    .filter(show=show, is_cancelled=False)
+                    .order_by("row", "seat")
+                )
 
-{% block content %}
-<h1>Спектакли <small class="text-muted">(из SQLite)</small></h1>
-<p>Всего спектаклей: {{ plays|length }}</p>
-
-<ul class="list-group">
-{% for play in plays %}
-    <li class="list-group-item">
-        <strong>{{ play.title }}</strong> — {{ play.genre }},
-        {{ play.duration_min }} мин.
-    </li>
-{% empty %}
-    <li class="list-group-item">Спектаклей нет.</li>
-{% endfor %}
-</ul>
-{% endblock %}
+    context = {
+        "show_id": show_id,
+        "seats": seats,
+        "error": error,
+        "show": show,
+    }
+    if show is not None:
+        context["stats"] = (
+            Booking.objects
+            .filter(show=show)
+            .aggregate(
+                total=Count("id"),
+                active=Count("id", filter=Q(is_cancelled=False)),
+                cancelled=Count("id", filter=Q(is_cancelled=True)),
+            )
+        )
+    return render(request, "plays/free_seats.html", context)

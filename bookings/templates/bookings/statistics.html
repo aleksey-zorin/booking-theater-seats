@@ -9,7 +9,7 @@
 <ul class="list-group">
 {% for item in statistics %}
     <li class="list-group-item d-flex justify-content-between">
-        <span>{{ item.play_title }}</span>
+        <span>{{ item.title }}</span>
         <span class="badge bg-primary">{{ item.bookings_count }}</span>
     </li>
 {% empty %}

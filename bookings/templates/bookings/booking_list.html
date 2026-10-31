@@ -4,15 +4,29 @@
 
 {% block content %}
 <h1>Бронирования</h1>
+<p>Всего активных броней: <strong>{{ bookings|length }}</strong></p>
 
+<ul class="list-group">
 {% for booking in bookings %}
-    <li class="list-group-item d-flex justify-content-between align-items-center">
+    <li class="list-group-item">
         <a href="{% url 'bookings:detail' booking.id %}">
-            {{ booking.show.datetime }} — место {{ booking.seat }}
+            <strong>Бронь №{{ booking.id }}</strong>
         </a>
-        {% include "bookings/includes/booking_status.html" %}
+        <br>
+        <span>Спектакль: {{ booking.show.play.title }}</span><br>
+        <span>Дата: {{ booking.show.datetime }}</span><br>
+        <span>Зал: {{ booking.show.hall }}</span><br>
+        <span>Ряд {{ booking.row }}, место {{ booking.seat }}</span><br>
+        <span>Зритель: {{ booking.user.name }}</span><br>
+
+        {% if booking.is_cancelled %}
+            <span class="badge bg-secondary">Отменено</span>
+        {% else %}
+            <span class="badge bg-success">Активно</span>
+        {% endif %}
     </li>
 {% empty %}
-    <p>Бронирований нет.</p>
+    <li class="list-group-item">Активных броней нет.</li>
 {% endfor %}
+</ul>
 {% endblock %}
