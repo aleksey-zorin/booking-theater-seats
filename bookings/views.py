@@ -11,7 +11,7 @@ def bookings_list(request):
     """Страница /bookings/ — список активных броней."""
     bookings = (
         Booking.objects
-        .exclude(is_cancelled=False)
+        .exclude(is_cancelled=True)
         .select_related("user", "show", "show__play")
         .order_by("-id")
     )
