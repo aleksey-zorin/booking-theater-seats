@@ -7,7 +7,7 @@ class User(models.Model):
     """Зритель."""
 
     name = models.CharField(max_length=200, verbose_name="Имя")
-    phone = models.CharField(max_length=50, blank=True, default="", verbose_name="Телефон") #max_length=50, blank=True, default="", verbose_name="Телефон",
+    phone = models.CharField(max_length=50, blank=True, default="", verbose_name="Телефон")
     email = models.EmailField(
         blank=True,
         default="",
